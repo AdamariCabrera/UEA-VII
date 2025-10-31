@@ -1,0 +1,18 @@
+{
+  "partes_del_cuerpo": [
+    "brazo",
+    "pierna",
+    "cabeza",
+    "cintura"
+  ],
+  "acciones": [
+    "mueve",
+    "gira",
+    "extiende",
+    "flexiona"
+  ],
+  "lados": [
+    "izquierdo",
+    "derecho"
+  ]
+}

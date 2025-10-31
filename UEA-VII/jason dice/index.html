@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones de movimiento</title>
+</head>
+<body>
+    <h1>Generador de movimientos corporales</h1>
+    <p id="instruccion">El archivo json dice que: <span id="resultado"></span></p>
+
+    <script>
+        // Llamamos al archivo JSON con fetch
+        fetch('movimientos.json')
+            .then(respuesta => {
+                if (!respuesta.ok) {
+                    throw new Error("No se pudo cargar el archivo JSON");
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                // Obtenemos los arrays
+                const acciones = datos.acciones;
+                const partes = datos.partes_del_cuerpo;
+                const lados = datos.lados;
+
+                // Elegimos un elemento aleatorio de cada categoría
+                const accion = acciones[Math.floor(Math.random() * acciones.length)];
+                const parte = partes[Math.floor(Math.random() * partes.length)];
+                const lado = lados[Math.floor(Math.random() * lados.length)];
+
+                // Construimos la instrucción completa
+                const instruccion = `${accion} tu ${parte} ${lado}`;
+
+                // Mostramos la instrucción en el HTML
+                document.getElementById('resultado').textContent = instruccion;
+            })
+            .catch(error => {
+                console.error("Error al cargar el archivo JSON:", error);
+                document.getElementById('resultado').textContent = "Hubo un problema al generar la instrucción.";
+            });
+    </script>
+</body>
+</html>
